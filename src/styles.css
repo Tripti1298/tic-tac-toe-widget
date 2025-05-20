@@ -1,0 +1,135 @@
+.floating-chatbar {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 9999;
+  width: 390px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background: none;
+}
+
+.floating-toggle-btn {
+  background: linear-gradient(135deg, #ffe066 0%, #fffde4 100%);
+  border: none;
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  box-shadow: 0 4px 12px rgba(245, 211, 111, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #e6b400;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.floating-toggle-btn:hover {
+  background: #fff9b2;
+  transform: scale(1.08);
+}
+
+.floating-board-box {
+  position: relative;
+  padding: 0;
+  border-radius: 28px;
+  box-shadow: none;
+  background: none;
+  /* Remove previous shadow/background, handled by .box and .box::before */
+}
+
+/* Pseudo-element for pastel yellow backplate */
+.box {
+  position: relative;
+  width: 380px;
+  height: 380px;
+  border: 8px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(45deg, #f5d36f, #ffe066, #f5d36f);
+  border-radius: 40px;
+  background: linear-gradient(135deg, #fffde4 0%, #fff8b7 100%);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 12px;
+  padding: 18px;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.box::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: calc(100% + 40px);
+  height: calc(100% + 40px);
+  background: linear-gradient(135deg, #fff8d2 0%, #ffeebb 100%);
+  border-radius: 48px;
+  box-shadow: 0 0 64px 16px #ffe06666;
+  z-index: -2;
+  filter: blur(2px);
+}
+
+/* Pippo image in top-left corner */
+.box .pippo-img {
+  position: absolute;
+  top: -28px;
+  left: -28px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #fffde4;
+  border: 3px solid #ffe066;
+  box-shadow: 0 2px 8px #ffe06655;
+  object-fit: cover;
+  z-index: 2;
+}
+
+/* Game status */
+.status {
+  font-size: 18px;
+  font-weight: 700;
+  color: #e6b400;
+  margin-bottom: 10px;
+  text-align: center;
+  grid-column: span 3;
+}
+
+/* Squares */
+.square {
+  background: linear-gradient(145deg, #fffbe7 0%, #fff6b7 100%);
+  border: 3px solid #ffe066;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #e6b400;
+  border-radius: 18px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(245, 211, 111, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+  outline: none;
+  height: 110px;
+  width: 110px;
+}
+
+.square:hover, .square:focus {
+  background: linear-gradient(135deg, #fffde4 0%, #fff7ae 100%);
+  box-shadow: 0 12px 32px rgba(245, 211, 111, 0.22);
+  transform: scale(1.07);
+}
+
+@keyframes softPop {
+  0% { transform: scale(0.95);}
+  50% { transform: scale(1.08);}
+  100% { transform: scale(1);}
+}
+
+.square:active {
+  animation: softPop 0.3s cubic-bezier(.51,1.53,.57,1);
+}
